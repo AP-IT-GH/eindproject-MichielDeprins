@@ -1,0 +1,29 @@
+{
+    "CapsuleAgent": {
+        "checkpoints": [
+            {
+                "steps": 4250,
+                "file_path": "results\\CapsuleAgent\\CapsuleAgent\\CapsuleAgent-4250.onnx",
+                "reward": 1.375,
+                "creation_time": 1683719737.339366,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgent\\CapsuleAgent\\CapsuleAgent-4250.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4250,
+            "file_path": "results\\CapsuleAgent\\CapsuleAgent.onnx",
+            "reward": 1.375,
+            "creation_time": 1683719737.339366,
+            "auxillary_file_paths": [
+                "results\\CapsuleAgent\\CapsuleAgent\\CapsuleAgent-4250.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.8.0+cpu"
+    }
+}

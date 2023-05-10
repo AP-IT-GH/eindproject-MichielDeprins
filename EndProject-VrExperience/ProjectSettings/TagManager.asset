@@ -4,8 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - enemyField
   - Ball
+  - MidfieldBorder
+  - border
+  - player1
+  - player2
+  - field2
+  - field1
+  - ballSpawn1
+  - ballSpawn2
   layers:
   - Default
   - TransparentFX
