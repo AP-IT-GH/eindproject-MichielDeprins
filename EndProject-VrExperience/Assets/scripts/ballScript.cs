@@ -24,7 +24,8 @@ public class ballScript : MonoBehaviour
     {
         if (this.transform.position.y < -1)
         {
-            outOfBounds = true;
+            this.transform.position = new Vector3(-1.6f, 1f, 0);
+
         }
     }
 
@@ -42,7 +43,6 @@ public class ballScript : MonoBehaviour
 
         }
         gameObject.GetComponent<Rigidbody>().velocity = direction * ballSpeed;
-        player1.GetComponent<CapsuleAgent>().setCanThrow(false);
     }
 
     public bool getOutOfBounds()
@@ -57,24 +57,22 @@ public class ballScript : MonoBehaviour
     {
         if (other.gameObject.tag == "field1")
         {
-            Debug.Log("field 1");
             player1.GetComponent<CapsuleAgent>().setCanThrow(true);
             setOutOfBounds(true);
         }
-        if (other.gameObject.tag == "field2")
+        else if (other.gameObject.tag == "field2")
         {
-            Debug.Log("field 2");
-            player1.GetComponent<CapsuleAgent>().setCanThrow(true);
+            player2.GetComponent<CapsuleAgent>().setCanThrow(true);
             setOutOfBounds(true);
         }
-        if (other.gameObject.tag == "player1")
+        else if (other.gameObject.tag == "player1")
         {
             Debug.Log("player 1 got hit");
             player2.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
             player1.GetComponent<CapsuleAgent>().setCanThrow(true);
             player2.GetComponent<CapsuleAgent>().setCanThrow(false);
         }
-        if (other.gameObject.tag == "player2")
+        else if (other.gameObject.tag == "player2")
         {
             Debug.Log("player 2 got hit");
             player1.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
