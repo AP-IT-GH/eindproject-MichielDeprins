@@ -12,8 +12,15 @@ public class CapsuleAgent : Agent
 
     private bool ballHitEnemy = false;
     private bool canThrow = false;
+    private GameObject player1;
+    private GameObject player2;
 
 
+    private void Awake()
+    {
+        player1 = GameObject.FindGameObjectWithTag("player1");
+        player2 = GameObject.FindGameObjectWithTag("player2");
+    }
 
     public void setBallHitEnemy(bool change)
     {
@@ -32,8 +39,17 @@ public class CapsuleAgent : Agent
     {
         setBallHitEnemy(false);
         ball.GetComponent<ballScript>().setOutOfBounds(false);
+
+        //tijdelijke if wanneer er geen throwball true is bij beide spelers
+        player1.GetComponent<CapsuleAgent>().setCanThrow(true);
+        // if (player1.GetComponent<CapsuleAgent>().getcanThrow() == false && player2.GetComponent<CapsuleAgent>().getcanThrow() == false)
+        // {
+        //     player1.GetComponent<CapsuleAgent>().setCanThrow(true);
+        //     Debug.Log("inital episode | setCanThrow set to player: player1");
+        // }
         // Reset the enemy position and ball instance
         Debug.Log("New Episode");
+        ResetBall();
         GameObject.FindGameObjectWithTag("player1").GetComponent<Transform>().position = new Vector3(-1.55999994f, 0.600000024f, 0);
         GameObject.FindGameObjectWithTag("player2").GetComponent<Transform>().position = new Vector3(2.29999995f, 0.600000024f, 0);
         //PART II: let the target move
@@ -58,33 +74,34 @@ public class CapsuleAgent : Agent
         controlSignal.z = actionBuffers.ContinuousActions[1];
         transform.Translate(controlSignal * movementSpeed);
 
-        float BallThrowing = actionBuffers.ContinuousActions[2];
+        //float BallThrowing = actionBuffers.ContinuousActions[2];
+        float ballThrowing = actionBuffers.DiscreteActions[0];
 
-        transform.Rotate(0.0f, 2 * actionBuffers.ContinuousActions[3], 0.0f);
+        transform.Rotate(0.0f, 2 * actionBuffers.ContinuousActions[2], 0.0f);
 
         Debug.Log(this.tag + " can throw: " + this.getcanThrow());
-        //ifs
+        Debug.Log("Ball is being thrown: " + ball.GetComponent<ballScript>().getIsbeingThrown());
+
         if (ballHitEnemy == true)
         {
             this.AddReward(+1);
             EndEpisode();
         }
 
-        if (BallThrowing > 0 && this.getcanThrow())
+        if (ballThrowing == 1 && this.getcanThrow())
         {
             Debug.Log("Ball thrown by " + this.tag);
             this.Throw();
         }
-        if (this.getcanThrow())
+        if (this.getcanThrow() && ball.GetComponent<ballScript>().getIsbeingThrown() == false)
         {
+            Debug.Log("update ballPosition");
             if (this.tag == "player1")
             {
-                ball.GetComponent<Rigidbody>().useGravity = false;
                 ball.transform.position = GameObject.FindWithTag("ballSpawn1").GetComponent<Transform>().position;
             }
-            if (this.tag == "player2")
+            else if (this.tag == "player2")
             {
-                ball.GetComponent<Rigidbody>().useGravity = false;
                 ball.transform.position = GameObject.FindWithTag("ballSpawn2").GetComponent<Transform>().position;
             }
 
@@ -93,35 +110,29 @@ public class CapsuleAgent : Agent
         if (ball.transform.position.y < -1)
         {
             ResetBall();
-            EndEpisode();
         }
         if (ball.GetComponent<ballScript>().getOutOfBounds())
         {
             ResetBall();
-            EndEpisode();
         }
     }
 
     private void ResetBall()
     {
+        Debug.Log("Reset ball triggered");
         ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
         ball.GetComponent<Rigidbody>().rotation = Quaternion.Euler(0, 0, 0);
         ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        if (this.getcanThrow())
+        ball.GetComponent<ballScript>().setIsbeingThrown(false);
+        ball.GetComponent<ballScript>().setOutOfBounds(false);
+
+        if (player1.GetComponent<CapsuleAgent>().getcanThrow())
         {
-            if (this.tag == "player1")
-            {
-                ball.transform.position = GameObject.FindWithTag("ballSpawn1").GetComponent<Transform>().position;
-            }
-            if (this.tag == "player2")
-            {
-                ball.transform.position = GameObject.FindWithTag("ballSpawn2").GetComponent<Transform>().position;
-            }
-            else
-            {
-                ball.transform.position = new Vector3(-1.6f, 1f, 0);
-            }
-            ball.GetComponent<Rigidbody>().useGravity = false;
+            ball.transform.position = GameObject.FindWithTag("ballSpawn1").GetComponent<Transform>().position;
+        }
+        else if (player2.GetComponent<CapsuleAgent>().getcanThrow())
+        {
+            ball.transform.position = GameObject.FindWithTag("ballSpawn2").GetComponent<Transform>().position;
         }
     }
 
@@ -130,19 +141,30 @@ public class CapsuleAgent : Agent
     {
 
         var continuousActionsOut = actionsOut.ContinuousActions;
+        var discreteActionsOut = actionsOut.DiscreteActions;
         continuousActionsOut[0] = Input.GetAxis("Vertical"); // Forwards/Backwards movement
         continuousActionsOut[1] = Input.GetAxis("Horizontal"); // Turning
-        continuousActionsOut[2] = Input.GetKey(KeyCode.F) ? 1f : 0f; // Ball throwing
-        continuousActionsOut[3] = Input.GetAxis("rotating");
+        continuousActionsOut[2] = Input.GetAxis("rotating");
+
+        discreteActionsOut[0] = Input.GetKey(KeyCode.F) ? 1 : 0; // Ball throwing
     }
 
     void Throw()
     {
-        if (this.getcanThrow())
+        if (this.getcanThrow() && ball.GetComponent<ballScript>().getIsbeingThrown() == false)
         {
-            Debug.Log("inside if getCanthrow");
-            ball.GetComponent<Rigidbody>().useGravity = true;
-            ball.GetComponent<ballScript>().ThrowBall(viewCamera.transform.position - transform.position, this.gameObject);
+            Vector3 throwDirection = this.viewCamera.transform.position - this.transform.position;
+            ball.GetComponent<ballScript>().ThrowBall(throwDirection);
+            if (player1.GetComponent<CapsuleAgent>().getcanThrow() == true && player2.GetComponent<CapsuleAgent>().getcanThrow() == false)
+            {
+                player1.GetComponent<CapsuleAgent>().setCanThrow(false);
+                player2.GetComponent<CapsuleAgent>().setCanThrow(true);
+            }
+            else if (player1.GetComponent<CapsuleAgent>().getcanThrow() == false && player2.GetComponent<CapsuleAgent>().getcanThrow() == true)
+            {
+                player1.GetComponent<CapsuleAgent>().setCanThrow(true);
+                player2.GetComponent<CapsuleAgent>().setCanThrow(false);
+            }
         }
     }
 
@@ -159,7 +181,7 @@ public class CapsuleAgent : Agent
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Ball")
+        if (other.gameObject.tag == "Ball" && this.getcanThrow() == false)
         {
             this.AddReward(-1f);
             Debug.Log(this.tag + " actually got hit");

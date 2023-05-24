@@ -5,10 +5,11 @@ using UnityEngine;
 public class ballScript : MonoBehaviour
 {
 
-    public float ballSpeed = 10f;
+    public float ballSpeed = 100f;
     private GameObject player1;
     private GameObject player2;
     private bool outOfBounds = false;
+    private bool isBeingThrown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,22 +28,24 @@ public class ballScript : MonoBehaviour
             this.transform.position = new Vector3(-1.6f, 1f, 0);
 
         }
+        if (isBeingThrown)
+        {
+            this.GetComponent<Rigidbody>().useGravity = true;
+        }
+        else
+        {
+            this.GetComponent<Rigidbody>().useGravity = false;
+
+        }
     }
 
-    public void ThrowBall(Vector3 direction, GameObject thrower)
+    public void ThrowBall(Vector3 direction)
     {
         direction.y = 0f; // project onto the horizontal plane
         direction = direction.normalized;
-        if (thrower.tag == "player1")
-        {
-            this.transform.position = GameObject.FindGameObjectWithTag("ballSpawn1").GetComponent<Transform>().position;
-        }
-        if (thrower.tag == "player2")
-        {
-            this.transform.position = GameObject.FindGameObjectWithTag("ballSpawn2").GetComponent<Transform>().position;
-
-        }
         gameObject.GetComponent<Rigidbody>().velocity = direction * ballSpeed;
+        isBeingThrown = true;
+
     }
 
     public bool getOutOfBounds()
@@ -53,49 +56,48 @@ public class ballScript : MonoBehaviour
     {
         outOfBounds = change;
     }
+    public bool getIsbeingThrown()
+    {
+        return isBeingThrown;
+    }
+    public void setIsbeingThrown(bool change)
+    {
+        isBeingThrown = change;
+    }
     private void OnCollisionEnter(Collision other)
     {
+        isBeingThrown = false;
         if (other.gameObject.tag == "field1")
         {
-            player1.GetComponent<CapsuleAgent>().setCanThrow(true);
+            //player1.GetComponent<CapsuleAgent>().setCanThrow(true);
             setOutOfBounds(true);
         }
         else if (other.gameObject.tag == "field2")
         {
-            player2.GetComponent<CapsuleAgent>().setCanThrow(true);
+            //player2.GetComponent<CapsuleAgent>().setCanThrow(true);
             setOutOfBounds(true);
         }
         else if (other.gameObject.tag == "player1")
         {
-            Debug.Log("player 1 got hit");
-            player2.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
-            player1.GetComponent<CapsuleAgent>().setCanThrow(true);
-            player2.GetComponent<CapsuleAgent>().setCanThrow(false);
+            if (other.gameObject.GetComponent<CapsuleAgent>().getcanThrow() == false)
+            {
+                Debug.Log("player 1 got hit");
+                player2.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
+            }
         }
-        else if (other.gameObject.tag == "player2")
+        else if (other.gameObject.tag == "player2" && other.gameObject.GetComponent<CapsuleAgent>().getcanThrow() == false)
         {
             Debug.Log("player 2 got hit");
             player1.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
-            player2.GetComponent<CapsuleAgent>().setCanThrow(true);
-            player1.GetComponent<CapsuleAgent>().setCanThrow(false);
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
+        isBeingThrown = false;
         if (other.tag == "border")
         {
-            outOfBounds = true;
-            if (player1.GetComponent<CapsuleAgent>().getcanThrow())
-            {
-                player2.GetComponent<CapsuleAgent>().setCanThrow(true);
-                player1.GetComponent<CapsuleAgent>().setCanThrow(false);
-            }
-            if (player2.GetComponent<CapsuleAgent>().getcanThrow())
-            {
-                player1.GetComponent<CapsuleAgent>().setCanThrow(true);
-                player2.GetComponent<CapsuleAgent>().setCanThrow(false);
-            }
+            setOutOfBounds(true);
         }
     }
 }

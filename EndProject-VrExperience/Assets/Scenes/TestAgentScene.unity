@@ -530,11 +530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 312725382316696487, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.956
+      value: -0.56
       objectReference: {fileID: 0}
     - target: {fileID: 312725382316696487, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.081
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 312725382316696487, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -571,6 +571,22 @@ PrefabInstance:
     - target: {fileID: 312725382316696491, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
       propertyPath: m_Name
       value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 590278529679210440, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
+      propertyPath: ballSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011235073918544864, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011235073918544864, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011235073918544864, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
@@ -670,37 +686,6 @@ MonoBehaviour:
   m_ObservationType: 0
   m_ObservationStacks: 1
   m_Compression: 1
---- !u!1 &450791540
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 450791541}
-  m_Layer: 0
-  m_Name: Balls
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &450791541
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450791540}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3247534, y: 1.5782688, z: 1.7405443}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &681105299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,9 +1395,9 @@ MonoBehaviour:
     VectorObservationSize: 4
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 4
-      BranchSizes: 
-    VectorActionSize: 04000000
+      m_NumContinuousActions: 3
+      BranchSizes: 00000000
+    VectorActionSize: 
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -1868,9 +1853,9 @@ MonoBehaviour:
     VectorObservationSize: 4
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 4
-      BranchSizes: 
-    VectorActionSize: 04000000
+      m_NumContinuousActions: 3
+      BranchSizes: 00000000
+    VectorActionSize: 
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
