@@ -41,10 +41,11 @@ public class ballScript : MonoBehaviour
 
     public void ThrowBall(Vector3 direction)
     {
+        isBeingThrown = true;
         direction.y = 0f; // project onto the horizontal plane
         direction = direction.normalized;
         gameObject.GetComponent<Rigidbody>().velocity = direction * ballSpeed;
-        isBeingThrown = true;
+
 
     }
 
