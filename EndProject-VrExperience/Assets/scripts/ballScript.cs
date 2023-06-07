@@ -80,11 +80,11 @@ public class ballScript : MonoBehaviour
         }
         else if (other.gameObject.tag == "player1")
         {
-            if (other.gameObject.GetComponent<CapsuleAgent>().getcanThrow() == false)
-            {
-                Debug.Log("player 1 got hit");
-                player2.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
-            }
+            // if (other.gameObject.GetComponent<CapsuleAgent>().getcanThrow() == false)
+            // {
+            //     Debug.Log("player 1 got hit");
+            //     player2.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
+            // }
         }
         else if (other.gameObject.tag == "player2" && other.gameObject.GetComponent<CapsuleAgent>().getcanThrow() == false)
         {

@@ -1067,7 +1067,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789435960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3, y: 0.91, z: 0}
+  m_LocalPosition: {x: 0.96, y: 0.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1151,7 +1151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 9.27, z: 0.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1353,7 +1353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441770281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.56, y: 0.6, z: 0}
+  m_LocalPosition: {x: -1.56, y: -0.25, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 4
+    VectorObservationSize: 19
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -1426,10 +1426,15 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   ball: {fileID: 264372770}
-  enemy: {fileID: 1656039167}
   viewCamera: {fileID: 441867145}
   rotationSpeed: 5
-  movementSpeed: 0.5
+  movementSpeed: 0.25
+  borders:
+  - {fileID: 288181125}
+  - {fileID: 1456308164}
+  - {fileID: 1695528659}
+  - {fileID: 756512740}
+  - {fileID: 259738936}
 --- !u!54 &1441770289
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1444,7 +1449,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &1441770290
 CapsuleCollider:
@@ -1814,7 +1819,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1656039170
 MonoBehaviour:
@@ -1823,7 +1828,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656039167}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a716c2360a08164085e649f8ca8e067, type: 3}
   m_Name: 
@@ -1833,10 +1838,10 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   ball: {fileID: 264372770}
-  enemy: {fileID: 1441770281}
   viewCamera: {fileID: 1577350479}
   rotationSpeed: 5
-  movementSpeed: 0.5
+  movementSpeed: 0.25
+  borders: []
 --- !u!114 &1656039171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,7 +1868,7 @@ MonoBehaviour:
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: CapsuleAgent
-  TeamId: 0
+  TeamId: 1
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
@@ -1889,7 +1894,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656039167}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 2.3, y: 0.6, z: 0}
+  m_LocalPosition: {x: 2.3, y: -0.27, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2105,8 +2110,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734545131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2295, y: 0, z: 0.8697}
-  m_LocalScale: {x: 1.0681995, y: 1, z: 0.94581306}
+  m_LocalPosition: {x: -0.20462, y: -1.0094, z: 0.8697}
+  m_LocalScale: {x: 1.6158653, y: 1.5127, z: 1.4307314}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 258624}
