@@ -102,7 +102,7 @@ public class CapsuleAgent : Agent
             if (ballThrowing == 1)
             {
                 this.Throw();
-
+                AddReward(-0.01f);
             }
 
         }
