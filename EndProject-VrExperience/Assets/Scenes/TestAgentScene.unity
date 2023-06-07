@@ -235,6 +235,51 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.000001, y: 2.220446e-16, z: 10}
   m_Center: {x: 0.00000047683716, y: 0, z: 0}
+--- !u!1 &52782295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 52782297}
+  - component: {fileID: 52782296}
+  m_Layer: 0
+  m_Name: enemyspawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &52782296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52782295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6a6244e01dbae4184ec07c9c6d009e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8303697965674340340, guid: 7f340791cb79b284fb2cf3fd2322e50f, type: 3}
+--- !u!4 &52782297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52782295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4414551, y: 1.0783877, z: -3.4015164}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &60143057
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +621,10 @@ PrefabInstance:
       propertyPath: ballSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 590278529679210440, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
+      propertyPath: enemyScript
+      value: 
+      objectReference: {fileID: 52782296}
     - target: {fileID: 6011235073918544864, guid: 0781bd0869e2477408f2af2e91b376fb, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
@@ -863,6 +912,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &713930784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 713930785}
+  m_Layer: 0
+  m_Name: EnemyObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &713930785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713930784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1449164, y: -0.21050707, z: 1.5662059}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &716849348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,7 +1476,7 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
-      BranchSizes: 01000000
+      BranchSizes: 02000000
     VectorActionSize: 
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
@@ -1429,6 +1509,7 @@ MonoBehaviour:
   viewCamera: {fileID: 441867145}
   rotationSpeed: 5
   movementSpeed: 0.25
+  enemyScript: {fileID: 52782296}
   borders:
   - {fileID: 288181125}
   - {fileID: 1456308164}
@@ -1790,7 +1871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1656039168
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1841,6 +1922,7 @@ MonoBehaviour:
   viewCamera: {fileID: 1577350479}
   rotationSpeed: 5
   movementSpeed: 0.25
+  enemyScript: {fileID: 0}
   borders: []
 --- !u!114 &1656039171
 MonoBehaviour:
@@ -2110,7 +2192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734545131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.20462, y: -1.0094, z: 0.8697}
+  m_LocalPosition: {x: -0.20462, y: -0.82, z: 0.8697}
   m_LocalScale: {x: 1.6158653, y: 1.5127, z: 1.4307314}
   m_ConstrainProportionsScale: 0
   m_Children:

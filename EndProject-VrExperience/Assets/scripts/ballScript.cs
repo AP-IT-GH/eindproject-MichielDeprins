@@ -10,13 +10,13 @@ public class ballScript : MonoBehaviour
     private GameObject player2;
     private bool outOfBounds = false;
     private bool isBeingThrown = false;
+    public enemyScript enemyScript;
 
     // Start is called before the first frame update
     void Start()
     {
         player1 = GameObject.FindWithTag("player1");
         player2 = GameObject.FindWithTag("player2");
-
 
     }
 
@@ -70,27 +70,22 @@ public class ballScript : MonoBehaviour
         isBeingThrown = false;
         if (other.gameObject.tag == "field1")
         {
-            //player1.GetComponent<CapsuleAgent>().setCanThrow(true);
+
             setOutOfBounds(true);
         }
         else if (other.gameObject.tag == "field2")
         {
-            //player2.GetComponent<CapsuleAgent>().setCanThrow(true);
             setOutOfBounds(true);
         }
-        else if (other.gameObject.tag == "player1")
-        {
-            // if (other.gameObject.GetComponent<CapsuleAgent>().getcanThrow() == false)
-            // {
-            //     Debug.Log("player 1 got hit");
-            //     player2.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
-            // }
-        }
-        else if (other.gameObject.tag == "player2" && other.gameObject.GetComponent<CapsuleAgent>().getcanThrow() == false)
+
+        else if (other.gameObject.tag == "player2")
         {
             Debug.Log("player 2 got hit");
+            enemyScript.deleteEnemy();
+            enemyScript.spawnEnemy();
             player1.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
         }
+        player1.GetComponent<CapsuleAgent>().setCanThrow(true);
     }
 
     void OnTriggerEnter(Collider other)
@@ -99,6 +94,8 @@ public class ballScript : MonoBehaviour
         if (other.tag == "border")
         {
             setOutOfBounds(true);
+            player1.GetComponent<CapsuleAgent>().setCanThrow(true);
         }
+
     }
 }
