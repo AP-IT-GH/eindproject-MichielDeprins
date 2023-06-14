@@ -94,6 +94,7 @@ public class ballScript : MonoBehaviour
         if (other.tag == "border")
         {
             setOutOfBounds(true);
+            player1.GetComponent<CapsuleAgent>().setBallHitBorder(true);
             player1.GetComponent<CapsuleAgent>().setCanThrow(true);
         }
 

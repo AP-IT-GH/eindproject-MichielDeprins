@@ -9,15 +9,42 @@
                 "auxillary_file_paths": [
                     "results\\CapsuleAgentV4\\CapsuleAgent\\CapsuleAgent-36472.pt"
                 ]
+            },
+            {
+                "steps": 499946,
+                "file_path": "results\\CapsuleAgentV4\\CapsuleAgent\\CapsuleAgent-499946.onnx",
+                "reward": null,
+                "creation_time": 1686162519.2368512,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV4\\CapsuleAgent\\CapsuleAgent-499946.pt"
+                ]
+            },
+            {
+                "steps": 520234,
+                "file_path": "results\\CapsuleAgentV4\\CapsuleAgent\\CapsuleAgent-520234.onnx",
+                "reward": null,
+                "creation_time": 1686162985.8118482,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV4\\CapsuleAgent\\CapsuleAgent-520234.pt"
+                ]
+            },
+            {
+                "steps": 524317,
+                "file_path": "results\\CapsuleAgentV4\\CapsuleAgent\\CapsuleAgent-524317.onnx",
+                "reward": null,
+                "creation_time": 1686163289.1121418,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV4\\CapsuleAgent\\CapsuleAgent-524317.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 36472,
+            "steps": 524317,
             "file_path": "results\\CapsuleAgentV4\\CapsuleAgent.onnx",
-            "reward": -1.4999999776482582,
-            "creation_time": 1686143035.2937322,
+            "reward": null,
+            "creation_time": 1686163289.1121418,
             "auxillary_file_paths": [
-                "results\\CapsuleAgentV4\\CapsuleAgent\\CapsuleAgent-36472.pt"
+                "results\\CapsuleAgentV4\\CapsuleAgent\\CapsuleAgent-524317.pt"
             ]
         }
     },

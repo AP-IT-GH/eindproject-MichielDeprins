@@ -14,6 +14,7 @@ public class CapsuleAgent : Agent
     public enemyScript enemyScript;
 
     private bool ballHitEnemy = false;
+    private bool ballHitWall = false;
     private bool canThrow = false;
     private GameObject player1;
 
@@ -27,6 +28,10 @@ public class CapsuleAgent : Agent
 
     }
 
+    public void setBallHitBorder(bool change)
+    {
+        ballHitWall = change;
+    }
 
 
     public void setBallHitEnemy(bool change)
@@ -42,10 +47,16 @@ public class CapsuleAgent : Agent
         return canThrow;
     }
 
+    public bool getBallHitBorder()
+    {
+        return ballHitWall;
+    }
+
     public override void OnEpisodeBegin()
     {
         player1.GetComponent<CapsuleAgent>().setCanThrow(true);
         setBallHitEnemy(false);
+        setBallHitBorder(false);
         ball.GetComponent<ballScript>().setOutOfBounds(false);
         enemyScript.spawnEnemy();
 
@@ -82,27 +93,30 @@ public class CapsuleAgent : Agent
 
         //float BallThrowing = actionBuffers.ContinuousActions[2];
         float ballThrowing = actionBuffers.DiscreteActions[0];
-        Debug.Log("ball throwing (action buffer): " + ballThrowing);
+
         transform.Rotate(0.0f, 2 * actionBuffers.ContinuousActions[2], 0.0f);
 
 
-        Debug.Log("can throw ball: " + this.getcanThrow());
-        Debug.Log("is being thrown: " + ball.GetComponent<ballScript>().getIsbeingThrown());
-
         if (ballHitEnemy == true)
         {
-            this.AddReward(+1);
+            this.AddReward(+2);
             EndEpisode();
+        }
+        if (ballHitWall == true)
+        {
+            this.AddReward(-0.5f);
+            Debug.Log("Ball hit border: negative reward");
+            setBallHitBorder(false);
         }
 
         if (this.getcanThrow() && ball.GetComponent<ballScript>().getIsbeingThrown() == false)
         {
-            Debug.Log("updating ball position");
+
             ball.transform.position = GameObject.FindWithTag("ballSpawn1").GetComponent<Transform>().position;
             if (ballThrowing == 1)
             {
                 this.Throw();
-                AddReward(-0.01f);
+                AddReward(-0.1f);
             }
 
         }
