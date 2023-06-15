@@ -33,7 +33,6 @@ public class playerScript : MonoBehaviour
     private void Awake()
     {
         player1 = GameObject.FindGameObjectWithTag("player1");
-
     }
 
     public void setBallHitBorder(bool change)
