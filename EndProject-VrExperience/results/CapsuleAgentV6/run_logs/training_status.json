@@ -9,15 +9,42 @@
                 "auxillary_file_paths": [
                     "results\\CapsuleAgentV6\\CapsuleAgent\\CapsuleAgent-207808.pt"
                 ]
+            },
+            {
+                "steps": 499948,
+                "file_path": "results\\CapsuleAgentV6\\CapsuleAgent\\CapsuleAgent-499948.onnx",
+                "reward": -1.3812500447966158,
+                "creation_time": 1686741790.855222,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV6\\CapsuleAgent\\CapsuleAgent-499948.pt"
+                ]
+            },
+            {
+                "steps": 618469,
+                "file_path": "results\\CapsuleAgentV6\\CapsuleAgent\\CapsuleAgent-618469.onnx",
+                "reward": null,
+                "creation_time": 1686743519.8818479,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV6\\CapsuleAgent\\CapsuleAgent-618469.pt"
+                ]
+            },
+            {
+                "steps": 885092,
+                "file_path": "results\\CapsuleAgentV6\\CapsuleAgent\\CapsuleAgent-885092.onnx",
+                "reward": -1.4769230989309459,
+                "creation_time": 1686747284.5633218,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV6\\CapsuleAgent\\CapsuleAgent-885092.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 207808,
+            "steps": 885092,
             "file_path": "results\\CapsuleAgentV6\\CapsuleAgent.onnx",
-            "reward": -1.8257143365485327,
-            "creation_time": 1686738306.8792949,
+            "reward": -1.4769230989309459,
+            "creation_time": 1686747284.5633218,
             "auxillary_file_paths": [
-                "results\\CapsuleAgentV6\\CapsuleAgent\\CapsuleAgent-207808.pt"
+                "results\\CapsuleAgentV6\\CapsuleAgent\\CapsuleAgent-885092.pt"
             ]
         }
     },

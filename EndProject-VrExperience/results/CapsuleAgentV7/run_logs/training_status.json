@@ -1,0 +1,56 @@
+{
+    "CapsuleAgent": {
+        "checkpoints": [
+            {
+                "steps": 2713,
+                "file_path": "results\\CapsuleAgentV7\\CapsuleAgent\\CapsuleAgent-2713.onnx",
+                "reward": -0.6208651399491094,
+                "creation_time": 1686747602.421462,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV7\\CapsuleAgent\\CapsuleAgent-2713.pt"
+                ]
+            },
+            {
+                "steps": 385163,
+                "file_path": "results\\CapsuleAgentV7\\CapsuleAgent\\CapsuleAgent-385163.onnx",
+                "reward": 1.5616279069767443,
+                "creation_time": 1686755661.441277,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV7\\CapsuleAgent\\CapsuleAgent-385163.pt"
+                ]
+            },
+            {
+                "steps": 415083,
+                "file_path": "results\\CapsuleAgentV7\\CapsuleAgent\\CapsuleAgent-415083.onnx",
+                "reward": 1.5024291497975708,
+                "creation_time": 1686756363.6866152,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV7\\CapsuleAgent\\CapsuleAgent-415083.pt"
+                ]
+            },
+            {
+                "steps": 448611,
+                "file_path": "results\\CapsuleAgentV7\\CapsuleAgent\\CapsuleAgent-448611.onnx",
+                "reward": 1.5521390374331552,
+                "creation_time": 1686757278.4037032,
+                "auxillary_file_paths": [
+                    "results\\CapsuleAgentV7\\CapsuleAgent\\CapsuleAgent-448611.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 448611,
+            "file_path": "results\\CapsuleAgentV7\\CapsuleAgent.onnx",
+            "reward": 1.5521390374331552,
+            "creation_time": 1686757278.4037032,
+            "auxillary_file_paths": [
+                "results\\CapsuleAgentV7\\CapsuleAgent\\CapsuleAgent-448611.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.8.0+cpu"
+    }
+}

@@ -17,6 +17,7 @@ public class CapsuleAgent : Agent
     private bool ballHitWall = false;
     private bool canThrow = false;
     private GameObject player1;
+    private Vector3 enemyPosition;
 
 
     public List<Transform> borders = new List<Transform>();
@@ -73,7 +74,9 @@ public class CapsuleAgent : Agent
     {
         sensor.AddObservation(this.transform.position);
         sensor.AddObservation(canThrow);
-        //sensor.AddObservation(this.ballHitEnemy);
+        sensor.AddObservation(this.ballHitEnemy);
+        sensor.AddObservation(this.ballHitWall);
+        sensor.AddObservation(enemyPosition);
         foreach (Transform b in borders)
         {
             sensor.AddObservation(b.position);
@@ -95,8 +98,10 @@ public class CapsuleAgent : Agent
         float ballThrowing = actionBuffers.DiscreteActions[0];
 
         transform.Rotate(0.0f, 2 * actionBuffers.ContinuousActions[2], 0.0f);
-
-
+        if (GameObject.FindGameObjectWithTag("player2") != null)
+        {
+            enemyPosition = GameObject.FindGameObjectWithTag("player2").GetComponent<Transform>().position;
+        }
         if (ballHitEnemy == true)
         {
             this.AddReward(+2);
@@ -105,20 +110,18 @@ public class CapsuleAgent : Agent
         if (ballHitWall == true)
         {
             this.AddReward(-0.5f);
+            EndEpisode();
             Debug.Log("Ball hit border: negative reward");
             setBallHitBorder(false);
         }
 
         if (this.getcanThrow() && ball.GetComponent<ballScript>().getIsbeingThrown() == false)
         {
-
             ball.transform.position = GameObject.FindWithTag("ballSpawn1").GetComponent<Transform>().position;
             if (ballThrowing == 1)
             {
                 this.Throw();
-                AddReward(-0.1f);
             }
-
         }
         if (ball.transform.position.y < -1)
         {
@@ -179,7 +182,6 @@ public class CapsuleAgent : Agent
             EndEpisode();
         }
     }
-
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ball" && other.gameObject.tag == "player2")

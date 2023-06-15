@@ -21,13 +21,6 @@ behaviors:
       extrinsic:
         strength: 1
         gamma: 0.99
-      gail:
-        gamma: 0.99
-        strength: 0.5
-        demo_path: C:\Users\depri\OneDrive\Bureaublad\VR Experience\Project\eindproject-MichielDeprins\EndProject-VrExperience\Assets\demos\demo1.demo
-    behavioral_cloning:
-      strength: 0.5
-      demo_path: C:\Users\depri\OneDrive\Bureaublad\VR Experience\Project\eindproject-MichielDeprins\EndProject-VrExperience\Assets\demos\demo1.demo
     max_steps: 10000000
     time_horizon: 64
     summary_freq: 2000
