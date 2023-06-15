@@ -11,7 +11,6 @@ public class CapsuleAgent : Agent
     public GameObject viewCamera;
     public float rotationSpeed = 5f;
     public float movementSpeed = .2f;
-    public enemyScript enemyScript;
 
     private bool ballHitEnemy = false;
     private bool ballHitWall = false;
@@ -29,16 +28,6 @@ public class CapsuleAgent : Agent
 
     }
 
-    public void setBallHitBorder(bool change)
-    {
-        ballHitWall = change;
-    }
-
-
-    public void setBallHitEnemy(bool change)
-    {
-        ballHitEnemy = change;
-    }
     public void setCanThrow(bool change)
     {
         canThrow = change;
@@ -48,21 +37,11 @@ public class CapsuleAgent : Agent
         return canThrow;
     }
 
-    public bool getBallHitBorder()
-    {
-        return ballHitWall;
-    }
-
     public override void OnEpisodeBegin()
     {
         player1.GetComponent<CapsuleAgent>().setCanThrow(true);
-        setBallHitEnemy(false);
-        setBallHitBorder(false);
-        ball.GetComponent<ballScript>().setOutOfBounds(false);
-        enemyScript.spawnEnemy();
 
         Debug.Log("New Episode");
-        ResetBall();
         //player stop moving
         this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         this.GetComponent<Rigidbody>().rotation = Quaternion.Euler(0, 0, 0);
@@ -102,18 +81,6 @@ public class CapsuleAgent : Agent
         {
             enemyPosition = GameObject.FindGameObjectWithTag("player2").GetComponent<Transform>().position;
         }
-        if (ballHitEnemy == true)
-        {
-            this.AddReward(+2);
-            EndEpisode();
-        }
-        if (ballHitWall == true)
-        {
-            this.AddReward(-0.5f);
-            EndEpisode();
-            Debug.Log("Ball hit border: negative reward");
-            setBallHitBorder(false);
-        }
 
         if (this.getcanThrow() && ball.GetComponent<ballScript>().getIsbeingThrown() == false)
         {
@@ -123,31 +90,9 @@ public class CapsuleAgent : Agent
                 this.Throw();
             }
         }
-        if (ball.transform.position.y < -1)
-        {
-            ResetBall();
-        }
-        if (ball.GetComponent<ballScript>().getOutOfBounds())
-        {
-            ResetBall();
-        }
-        if (this.transform.position.y < -1)
-        {
-            EndEpisode();
-        }
-    }
-
-    private void ResetBall()
-    {
-        ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        ball.GetComponent<Rigidbody>().rotation = Quaternion.Euler(0, 0, 0);
-        ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        ball.GetComponent<ballScript>().setIsbeingThrown(false);
-        ball.GetComponent<ballScript>().setOutOfBounds(false);
-        this.setCanThrow(true);
-        ball.transform.position = GameObject.FindWithTag("ballSpawn1").GetComponent<Transform>().position;
 
     }
+
 
     //TESTING
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -173,21 +118,12 @@ public class CapsuleAgent : Agent
         player1.GetComponent<CapsuleAgent>().setCanThrow(false);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "MidfieldBorder" || other.tag == "border")
-        {
-            Debug.Log(this.gameObject.tag + " hit the border");
-            this.AddReward(-1f);
-            EndEpisode();
-        }
-    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ball" && other.gameObject.tag == "player2")
         {
             Debug.Log(this.gameObject.tag + " got hit by ball");
-            this.AddReward(-1f);
         }
     }
 }

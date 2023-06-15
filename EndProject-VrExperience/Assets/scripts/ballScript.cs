@@ -10,7 +10,7 @@ public class ballScript : MonoBehaviour
     private GameObject player2;
     private bool outOfBounds = false;
     private bool isBeingThrown = false;
-    public enemyScript enemyScript;
+    public scoreScript score;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class ballScript : MonoBehaviour
         }
         else
         {
-            this.GetComponent<Rigidbody>().useGravity = false;
+            // this.GetComponent<Rigidbody>().useGravity = false;
 
         }
     }
@@ -68,24 +68,20 @@ public class ballScript : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         isBeingThrown = false;
+
         if (other.gameObject.tag == "field1")
         {
-
-            setOutOfBounds(true);
+            Debug.Log("Ball on field 1");
+            ResetBall();
         }
-        else if (other.gameObject.tag == "field2")
-        {
-            setOutOfBounds(true);
-        }
-
         else if (other.gameObject.tag == "player2")
         {
-            Debug.Log("player 2 got hit");
-            enemyScript.deleteEnemy();
-            enemyScript.spawnEnemy();
-            player1.GetComponent<CapsuleAgent>().setBallHitEnemy(true);
+            score.updateAgentScore();
         }
-        player1.GetComponent<CapsuleAgent>().setCanThrow(true);
+        else if (other.gameObject.tag == "player1")
+        {
+            score.updatePlayerScore();
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -93,10 +89,18 @@ public class ballScript : MonoBehaviour
         isBeingThrown = false;
         if (other.tag == "border")
         {
-            setOutOfBounds(true);
-            player1.GetComponent<CapsuleAgent>().setBallHitBorder(true);
-            player1.GetComponent<CapsuleAgent>().setCanThrow(true);
+
         }
 
+    }
+
+    private void ResetBall()
+    {
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        this.GetComponent<Rigidbody>().rotation = Quaternion.Euler(0, 0, 0);
+        this.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        setIsbeingThrown(false);
+        setOutOfBounds(false);
+        player1.GetComponent<CapsuleAgent>().setCanThrow(true);
     }
 }
