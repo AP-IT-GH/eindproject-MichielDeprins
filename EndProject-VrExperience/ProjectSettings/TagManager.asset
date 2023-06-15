@@ -13,6 +13,8 @@ TagManager:
   - field1
   - ballSpawn1
   - ballSpawn2
+  - PlayTrigger
+  - ExitTrigger
   layers:
   - Default
   - TransparentFX
