@@ -5,8 +5,10 @@ using UnityEngine;
 public class GameLogic : MonoBehaviour
 {
     [SerializeField] scoreScript ScoreScript;
-    [SerializeField] public bool gameStarted,decisionMade;
+    [SerializeField] public bool gameStarted,decisionMade,startOnce;
     [SerializeField]  GameObject player;
+
+    [SerializeField] private GameObject enemy;
 
     [SerializeField] Transform startPosition, startedPosition;
     private bool agentVictory,playerVictory;
@@ -21,11 +23,13 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!gameStarted && decisionMade == false){
-            player.GetComponent<Transform>().position = startPosition.position;
-        }else{
+        if(!gameStarted && decisionMade == false && startOnce == false){
+            
+            startOnce = true;
+        }else if(gameStarted && decisionMade == false){
             player.GetComponent<Transform>().position = startedPosition.position;
             decisionMade = true;
+            enemy.SetActive(true);
         }
         if(ScoreScript.getAgentScore() > 2){
             agentVictory = true;

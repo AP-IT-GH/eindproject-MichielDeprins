@@ -9,14 +9,15 @@ public class StartBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.transform.position = new Vector3(20,80,6);
+        this.transform.position = new Vector3(-3,101,1);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         if(this.transform.position.y < 70 ){
-            this.transform.position = new Vector3(20,80,6);
+            this.transform.position = new Vector3(-3,101,1);
         }
     }
 
@@ -26,8 +27,9 @@ public class StartBall : MonoBehaviour
             Application.Quit();
         }
         
-        if(other.gameObject.tag =="StartTrigger"){
+        if(other.gameObject.tag =="PlayTrigger"){
             gameLogic.gameStarted = true;
+            //GameObject.FindGameObjectWithTag("player1").SetActive(true);
         }
     }
 }

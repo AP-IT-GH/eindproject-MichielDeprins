@@ -6,8 +6,8 @@ public class ballScript : MonoBehaviour
 {
 
     public float ballSpeed = 100f;
-    private GameObject player1;
-    private GameObject player2;
+    [SerializeField] private GameObject player1;
+    [SerializeField]  private GameObject player2;
     private bool outOfBounds = false;
     private bool isBeingThrown = false;
     public scoreScript score;
@@ -15,9 +15,7 @@ public class ballScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player1 = GameObject.FindWithTag("player1");
-        player2 = GameObject.FindWithTag("player2");
-
+       
     }
 
     // Update is called once per frame
