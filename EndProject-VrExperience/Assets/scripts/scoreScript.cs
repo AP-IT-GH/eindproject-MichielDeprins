@@ -16,7 +16,7 @@ public class scoreScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(agentScore);
     }
     public int getPlayerScore()
     {
@@ -28,11 +28,11 @@ public class scoreScript : MonoBehaviour
     }
     public void updatePlayerScore()
     {
-        playerScore++;
+        this.playerScore++;
     }
     public void updateAgentScore()
     {
-        agentScore++;
+        this.agentScore++;
     }
 }
 

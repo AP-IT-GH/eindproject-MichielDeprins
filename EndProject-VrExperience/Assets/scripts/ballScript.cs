@@ -76,7 +76,10 @@ public class ballScript : MonoBehaviour
         }
         else if (other.gameObject.tag == "player2")
         {
+            Debug.Log("hit player");
+            Debug.Log(score.getAgentScore());
             score.updateAgentScore();
+            Debug.Log(score.getAgentScore());
         }
         else if (other.gameObject.tag == "player1")
         {

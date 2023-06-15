@@ -70,3 +70,11 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 [Aa]ssets/[Ss]treamingAssets/aa.meta
 [Aa]ssets/[Ss]treamingAssets/aa/*
+
+
+EndProject-VrExperience/Assets/ML-Agents/Timers/TrainDodgerScene_timers.json
+EndProject-VrExperience/Assets/ML-Agents/Timers/TrainDodgerScene_timers.json.meta
+EndProject-VrExperience/Assets/Prefabs/enemy.prefab
+EndProject-VrExperience/Assets/Prefabs/enemy.prefab.meta
+EndProject-VrExperience/results/cap1/
+EndProject-VrExperience/venv/
