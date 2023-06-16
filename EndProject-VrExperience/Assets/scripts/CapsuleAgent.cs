@@ -85,10 +85,13 @@ public class CapsuleAgent : Agent
         if (this.getcanThrow() && ball.GetComponent<ballScript>().getIsbeingThrown() == false)
         {
             ball.transform.position = GameObject.FindWithTag("ballSpawn1").GetComponent<Transform>().position;
+            ball.GetComponent<Rigidbody>().useGravity = false;
             if (ballThrowing == 1)
             {
                 this.Throw();
             }
+        }else{
+            ball.GetComponent<Rigidbody>().useGravity=true;
         }
 
     }

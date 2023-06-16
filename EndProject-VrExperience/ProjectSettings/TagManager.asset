@@ -15,6 +15,7 @@ TagManager:
   - ballSpawn2
   - PlayTrigger
   - ExitTrigger
+  - player2Body
   layers:
   - Default
   - TransparentFX

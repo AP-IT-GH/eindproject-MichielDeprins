@@ -72,12 +72,9 @@ public class ballScript : MonoBehaviour
             Debug.Log("Ball on field 1");
             ResetBall();
         }
-        else if (other.gameObject.tag == "player2")
+        else if (other.gameObject.tag == "player2Body")
         {
-            Debug.Log("hit player");
-            Debug.Log(score.getAgentScore());
             score.updateAgentScore();
-            Debug.Log(score.getAgentScore());
         }
         else if (other.gameObject.tag == "player1")
         {
