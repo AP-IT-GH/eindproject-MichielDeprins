@@ -81,17 +81,18 @@ public class CapsuleAgent : Agent
         {
             enemyPosition = GameObject.FindGameObjectWithTag("player2").GetComponent<Transform>().position;
         }
+        Debug.Log(enemyPosition);
 
         if (this.getcanThrow() && ball.GetComponent<ballScript>().getIsbeingThrown() == false)
         {
             ball.transform.position = GameObject.FindWithTag("ballSpawn1").GetComponent<Transform>().position;
-            ball.GetComponent<Rigidbody>().useGravity = false;
+            ball.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             if (ballThrowing == 1)
             {
+                Debug.Log("tried throwing");
+                ball.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 this.Throw();
             }
-        }else{
-            ball.GetComponent<Rigidbody>().useGravity=true;
         }
 
     }

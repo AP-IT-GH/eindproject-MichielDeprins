@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class playerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject agent;
+    
+       public GameObject ball;
+
+    private bool ballHitEnemy = false;
+    private bool ballHitWall = false;
+    private bool canThrow = false;
+    private GameObject player1;
+    
+        // Start is called before the first frame update
     void Start()
     {
 
@@ -12,19 +21,14 @@ public class playerScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
+    {   
+        if(agent.GetComponent<CapsuleAgent>().getcanThrow()){
+            this.canThrow = false;
+        }else{
+            this.canThrow = true;
+        }
     }
-    public GameObject ball;
-    public GameObject viewCamera;
-    public float rotationSpeed = 5f;
-    public float movementSpeed = .2f;
-
-    private bool ballHitEnemy = false;
-    private bool ballHitWall = false;
-    private bool canThrow = false;
-    private GameObject player1;
-    private Vector3 enemyPosition;
+ 
 
 
     public List<Transform> borders = new List<Transform>();
@@ -55,36 +59,4 @@ public class playerScript : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-    Vector3 throwDirection;
-    void Throw()
-    {
-        Debug.Log($"{this.gameObject.tag} has thrown the ball");
-        throwDirection = this.viewCamera.transform.position - this.transform.position;
-        ball.GetComponent<ballScript>().setIsbeingThrown(true);
-        ball.GetComponent<ballScript>().ThrowBall(throwDirection);
-
-        player1.GetComponent<CapsuleAgent>().setCanThrow(false);
-    }
-
-
-
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Ball")
-        {
-            Debug.Log("ball hit enemy");
-        }
-    }
 }

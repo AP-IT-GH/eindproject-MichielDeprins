@@ -31,17 +31,13 @@ public class GameLogic : MonoBehaviour
             decisionMade = true;
             enemy.SetActive(true);
         }
+
         if(ScoreScript.getAgentScore() > 2){
             agentVictory = true;
-            gameStarted = false;
-            decisionMade = false;
-            player.GetComponent<Transform>().position = startPosition.position;
+
         } 
         else if(ScoreScript.getPlayerScore() > 2){
             playerVictory = true;
-             gameStarted = false;
-            decisionMade = false;
-            player.GetComponent<Transform>().position = startPosition.position;
         }
 
         

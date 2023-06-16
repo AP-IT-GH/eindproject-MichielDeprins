@@ -30,11 +30,11 @@ public class ballScript : MonoBehaviour
         {
             this.GetComponent<Rigidbody>().useGravity = true;
         }
-        else
-        {
-            // this.GetComponent<Rigidbody>().useGravity = false;
+        // else
+        // {
+        //     this.GetComponent<Rigidbody>().useGravity = false;
 
-        }
+        // }
     }
 
     public void ThrowBall(Vector3 direction)
@@ -72,11 +72,7 @@ public class ballScript : MonoBehaviour
             Debug.Log("Ball on field 1");
             ResetBall();
         }
-        else if (other.gameObject.tag == "player2Body")
-        {
-            score.updateAgentScore();
-        }
-        else if (other.gameObject.tag == "player1")
+        else if (other.gameObject.tag == "player1" && player1.GetComponent<CapsuleAgent>().getcanThrow() == false)
         {
             score.updatePlayerScore();
         }
@@ -85,11 +81,10 @@ public class ballScript : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         isBeingThrown = false;
-        if (other.tag == "border")
+        if (other.gameObject.tag == "player2Body" && player2.GetComponent<playerScript>().getcanThrow() == false)
         {
-
+            score.updateAgentScore();
         }
-
     }
 
     private void ResetBall()
